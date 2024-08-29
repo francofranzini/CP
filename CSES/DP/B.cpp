@@ -7,7 +7,7 @@ using namespace std;
 int busqueda_binaria(long long sumatoria){
     if(sumatoria == 1) return 1;
     long long a = 0;
-    long long b = sumatoria;
+    long long b = 15000000;
     while(b-a > 1){
         long long mid = (b+a)/2;
         if(mid*mid > sumatoria){
