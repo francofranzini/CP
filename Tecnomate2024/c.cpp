@@ -15,10 +15,11 @@ int main(){
         matriz[i] = c-'0';
         // cin >> matriz[i];
     }
-
+//[1,1,0,0,1,1,0,1]
     int t[n+1];
-    t[0] = 0;
+    t[0] = matriz[i];
     forn(i, n) t[i+1] = t[i] + matriz[i];
+//[1,2,2,2,3,4,4,5]
 
     bool win = false;
     forn(i, n-k+1) {
@@ -40,6 +41,7 @@ int main(){
     int tablero_ganado = 0;
     int gano = 0;
     if(unos >= k) tablero_ganado = 1;
+    //variable length window
     while(b < n-1 && gano == 0 && tablero_ganado == 0)
     {
         ++b;
