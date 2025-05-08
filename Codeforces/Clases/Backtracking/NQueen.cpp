@@ -14,35 +14,26 @@ using namespace std;
 typedef long long ll;
 typedef pair<int, int> pii;
 typedef vector<int> vi;
+typedef set<int> si;
 
 // Constants
 const int INF = 1e9;
 const ll LINF = 1e18;
 const int MOD = 1e9 + 7;
 
-int LIS(int a[], int ultimo, int r, int n, int i){
-    if(i == n) return r;
-    if(a[i] > ultimo){
-        r = max(LIS(a, a[i], r+1, n, i+1), LIS(a, ultimo, r, n, i+1));
-        return r;
-    }
-    else{
-        return LIS(a, ultimo, r, n, i+1);
-    }
+vector<pii> backtrack(int n, vi columnas, vi d1, vi d2, int fila, vector<pii> tablero){
+	if(fila == n) return tablero;
 }
 
 void solve() {
-    int n;
-    cin >> n;
-    int a[n];
-    forn(i,n) cin >> a[i];
-    int rta = 0;
-    forn(i, n){
-        rta = max(rta, LIS(a, a[i], 1, n, i));
-    }
-    cout << rta << "\n";
-    
-
+	int n;
+	cin >> n;
+	vector<vector<pii>> rta;
+	vector<pii> aux;
+	vi d1, d2, columnas;
+	forn(i, n){
+		aux = backtrack(n, columnas, d1, d2, i)
+	}
 
 }
 
