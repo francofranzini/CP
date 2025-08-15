@@ -37,7 +37,10 @@ long long a[MAXN];
     }
 */
 
-
+for (int i = 0; i <= n; i += BLOCK_SIZE) {
+      int end = min(i + BLOCK_SIZE, n);
+      dp(end); // Calcula el bloque actual
+    }
 void solve(){
 	cin >> n;
   forn(i, n+1) a[i] = 0;
