@@ -25,11 +25,11 @@ const int MOD = 1e9 + 7;
 void solve() {
 	int n, dir; cin >> n;
 	queue<int> cero, uno;
-	long long t;
+	int t, x;
 	forn(i, n){
-		cin >> t >> dir;
-		if(dir == 1) uno.push(t);
-		else cero.push(t);
+		cin >> x >> dir;
+		if(dir == 1) uno.push(x);
+		else cero.push(x);
 	}	
 	
 
@@ -38,8 +38,14 @@ void solve() {
 	if(uno.size() && cero.size() && cero.front() < uno.front()) dir = 0;
 	if(uno.size() && cero.size() && uno.front() < cero.front()) dir = 1;
 
-	if(dir) t = uno.front() + 10;
-	else t = cero.front() + 10;
+	if(dir){
+		t = uno.front() + 10;
+		uno.pop();
+	} 
+	else {
+		t = cero.front() + 10;
+		cero.pop();
+	}
 	
 	while(uno.size() || cero.size()){
 		int flag = 0;
@@ -76,17 +82,17 @@ void solve() {
 				t = uno.front() + 10;
 				uno.pop();
 			} 
-			if(uno.size() == 0){
+			else if(uno.size() == 0){
 				dir = 0;
 				t = cero.front() + 10;
 				cero.pop();
 			}
-			if(uno.size() && cero.size() && cero.front() < uno.front()){
+			else if(uno.size() && cero.size() && cero.front() < uno.front()){
 				dir = 0;
 				t = cero.front() + 10;
 				cero.pop();
 			} 
-			if(uno.size() && cero.size() && uno.front() < cero.front()){
+			else if(uno.size() && cero.size() && uno.front() < cero.front()){
 				dir = 1;
 				t = uno.front() + 10;
 				uno.pop();
