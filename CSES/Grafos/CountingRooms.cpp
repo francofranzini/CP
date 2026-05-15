@@ -25,25 +25,41 @@ const int MAXN = 10000000;
  
  
 int n, x;
-
+ 
 int memo[MAXN];
 set<int> coins;
+ 
 
+char a[1001][1001];
+void dfs(int i, int j, int n, int m){
+  if(i >= n || i < 0 || j >= m || j< 0) return;
+  if(a[i][j] == '#') return;
+ 
+  a[i][j] = '#';
+  dfs(i+1, j, n, m);
+  dfs(i-1, j, n, m);
+  dfs(i, j+1, n, m);
+  dfs(i, j-1, n, m);
+}
 
 void solve(){
-  cin >> n >> x;
-  int coins[n];
-  
-  forn(i, x+1) memo[i] = INF;
-  forn(i, n) cin >> coins[i];
-  memo[0] = 0;
-
-  for(int i = 1; i<=x; i++){
-    forn(j, n){
-      if(i - coins[j] >= 0) memo[i] = min(memo[i], memo[i-coins[j]] + 1);
+  int n, m; cin >> n >> m;
+  forn(i, n){
+    forn(j, m){
+      cin >> a[i][j];
     }
   }
-  cout << (memo[x] >= INF ? -1 : memo[x]) << "\n";
+  int rta = 0;
+  forn(i, n){
+    forn(j, m){
+      if(a[i][j] == '.'){
+        rta++;
+        dfs(i, j, n, m);
+      }
+    }
+  }
+
+  cout << rta << endl;
 }
  
 int main(){

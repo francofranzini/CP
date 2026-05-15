@@ -29,22 +29,42 @@ int n, m;
 vector<int> adj[MAXN];
 int colour[MAXN];
 int visited[MAXN];
-
+int valido = 1;
 
 void dfs(int i, int color){
-  
+  colour[i] = color;
+  for(auto a: adj[i]){
+    if(colour[a] == color) valido = 0;
+    if(!valido) break;
+    if(visited[a]) continue;
+    visited[a] = 1;
+    dfs(a, (color%2)+1);
+  }
 }
 
 
 void solve(){
   cin >> n >> m;
-  //Create a loop
+  //Check for bipartitness and no loop
+  //dfs con coloreo
   forn(i, m){
     int x, y;
     cin >> x >> y;
     adj[x].push_back(y);
     adj[y].push_back(x);
   }
+  forn(i, n){
+    colour[i+1] = 0;
+    visited[i+1] = 0;
+  } 
+  for(int i = 1; i<=n; i++){
+    if(!valido) break;
+    if(visited[i]) continue;
+    dfs(i, 1);
+  }
+  if(!valido) cout << "IMPOSSIBLE" << "\n";
+  else forn(i, n) cout << colour[i+1] << " ";
+  cout << "\n";
 } 
 int main(){
   fastio;
